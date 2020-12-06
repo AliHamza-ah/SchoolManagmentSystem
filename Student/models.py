@@ -84,7 +84,6 @@ class City(models.Model):
         verbose_name_plural = 'Cities'
 
 
-
 class Student(models.Model):
     date_of_admission = models.DateField()
     name = models.CharField(max_length=50)
@@ -119,31 +118,33 @@ class Student(models.Model):
         verbose_name = 'Student'
         verbose_name_plural = 'Students'
 
+
 class Attendance(models.Model):
-    attendance_date=models.DateField()
+    attendance_date = models.DateField()
     class_id = models.ForeignKey(Class, on_delete=models.DO_NOTHING)
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'Class : {self.class_id} , Date : {self.attendance_date}'
 
 
 class AttendanceReport(models.Model):
-    id=models.AutoField(primary_key=True)
-    student_id=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
-    attendance_id=models.ForeignKey(Attendance,on_delete=models.CASCADE)
-    status=models.BooleanField(default=False)
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    id = models.AutoField(primary_key=True)
+    student_id = models.ForeignKey(Student, on_delete=models.DO_NOTHING)
+    attendance_id = models.ForeignKey(Attendance, on_delete=models.CASCADE)
+    status = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.attendance_id.attendance_date}/class:{self.attendance_id.class_id}/{self.student_id.name}'
 
+
 class Fee(models.Model):
     YEAR_CHOICES = []
     for r in range(2020, (datetime.now().year + 5)):
-          YEAR_CHOICES.append((r, r))
+        YEAR_CHOICES.append((r, r))
     fee_year = models.IntegerField(choices=YEAR_CHOICES, default=datetime.now().year)
     Month_choices = [
         ('Jan', 'January'),
@@ -161,21 +162,21 @@ class Fee(models.Model):
     ]
     fee_month = models.CharField(choices=Month_choices, max_length=15, default='Jan')
     class_id = models.ForeignKey(Class, on_delete=models.DO_NOTHING)
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.fee_month}-{self.fee_year}/{self.class_id._class}'
 
+
 class FeeReport(models.Model):
-    id=models.AutoField(primary_key=True)
-    student_id=models.ForeignKey(Student,on_delete=models.DO_NOTHING)
-    fee_id=models.ForeignKey(Fee,on_delete=models.CASCADE)
-    amount=models.IntegerField()
-    created_at=models.DateTimeField(auto_now_add=True)
-    updated_at=models.DateTimeField(auto_now_add=True)
+    id = models.AutoField(primary_key=True)
+    student_id = models.ForeignKey(Student, on_delete=models.DO_NOTHING)
+    fee_id = models.ForeignKey(Fee, on_delete=models.CASCADE)
+    amount = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
     is_paid = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.fee_id.fee_month}-{self.fee_id.fee_year}/{self.student_id.name}'
-
