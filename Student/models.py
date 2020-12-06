@@ -5,7 +5,7 @@ import calendar
 
 
 def next_month():
-    month = (date.today().month) % 12 + 1
+    month = date.today().month % 12 + 1
     year = date.today().year
     day = 1
     return date(year, month, day)
@@ -43,11 +43,11 @@ class Academic_Session(models.Model):
 
 
 class Class(models.Model):
-    _class = models.CharField(max_length=10)
+    class_name = models.CharField(max_length=10)
     academic_year = models.ForeignKey(Academic_Session, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self._class}({self.academic_year})"
+        return f"{self.class_name}({self.academic_year})"
 
     class Meta:
         verbose_name = 'Class'
@@ -166,7 +166,7 @@ class Fee(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.fee_month}-{self.fee_year}/{self.class_id._class}'
+        return f'{self.fee_month}-{self.fee_year}/{self.class_id.class_name}'
 
 
 class FeeReport(models.Model):
