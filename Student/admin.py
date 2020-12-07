@@ -13,8 +13,7 @@ admin.site.register(Country)
 admin.site.register(Designation)
 admin.site.register(Attendance)
 admin.site.register(AttendanceReport)
-admin.site.register(Fee)
-admin.site.register(FeeReport)
+
 
 
 class StudentAdmin(admin.ModelAdmin):

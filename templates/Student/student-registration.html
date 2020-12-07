@@ -5,9 +5,10 @@
     <title>Student Registraion</title>
 </head>
 <body>
+{% load crispy_forms_tags %}
     <form method="post">
         {% csrf_token %}
-        {{ student_form.as_p }}
+        {{ student_form | crispy }}
         <button type="submit">Create</button>
     </form >
 </body>

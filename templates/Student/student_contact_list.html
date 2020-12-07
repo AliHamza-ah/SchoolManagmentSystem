@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact List</title>
+</head>
+<body>
+<div class="container content-center">
+    <table>
+        <tr>
+            <td>Sr. no.</td>
+            <td>Name</td>
+            <td>Contact No.</td>
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.pk }}</td>
+            <td><a href="{% url 'student-detail' student.id %}">{{ student.name }}</a></td>
+            <td>{{ student.guardian_contact_info }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
