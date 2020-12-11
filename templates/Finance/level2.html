@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    {% load crispy_forms_tags %}
+    {% if message %}
+        <h1 class="alert alert-danger">
+            {{ message }}
+        </h1>
+    {% endif %}
+    <div class="content mt-3">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-2">
+                    <div class="card mx-auto">
+                        <div class="card-header">
+                            <strong>Add Level 2</strong>
+                        </div>
+                        <div class="mx-auto d-block">
+                            <div class="form-group">
+                                <form method="post" class="form-control">
+                                    {% csrf_token %}
+                                    {{ form.as_p }}<br>
+                                    <button type="submit" class="btn btn-primary">Create</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

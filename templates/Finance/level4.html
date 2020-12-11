@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+{% if message %}
+    <h1 class="alert alert-danger">
+        {{ message }}
+    </h1>
+{% else %}
+    <form method="post" id="Level4Form" data-level2-url="{% url 'ajax_load_level2' %}" data-level3-url="{% url 'ajax_load_level3' %}">
+        {% csrf_token %}
+        {{ form.as_p }}<br>
+        <button type="submit">Create</button>
+    </form>
+{% endif %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_parent_level1").change(function () {
+        var url = $("#Level4Form").attr("data-level2-url");  // get the url of the `load_cities` view
+        var parent_level = $(this).val();  // get the selected country ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url: '{% url 'ajax_load_level2' %}',                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+            data: {
+                'parent_level': parent_level       // add the country id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+                $("#id_parent_level2").html(data);  // replace the contents of the city input with the data that came from the server
+            }
+        });
+
+    });
+    $("#id_parent_level2").change(function () { //django-model-form created this id
+    var url = $("#Level4Form").attr("data-level3-url");  // get the url of the `load_cities` view
+    var parent_level = $(this).val();  // get the selected country ID from the HTML input
+    var parent_level2 = $("#id_parent_level2").val();  // get the selected country ID from the HTML input
+    console.log(parent_level)
+    $.ajax({                       // initialize an AJAX request
+        url: '{% url 'ajax_load_level3' %}',                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/) person_form.html template has this url var
+        data: {
+            'parent_level': parent_level  ,    // add the country id to the GET parameters
+            'parent_level1': parent_level2  ,    // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+            $("#id_parent_level").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+    });
+
+    });
+</script>
+{% endblock %}

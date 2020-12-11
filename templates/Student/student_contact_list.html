@@ -5,19 +5,19 @@
     <title>Contact List</title>
 </head>
 <body>
-<div class="container content-center">
+<div class="container">
     <table>
         <tr>
-            <td>Sr. no.</td>
-            <td>Name</td>
-            <td>Contact No.</td>
+            <th>Sr. no.</th>
+            <th>Name</th>
+            <th>Contact No.</th>
         </tr>
         {% for student in students %}
-        <tr>
-            <td>{{ student.pk }}</td>
-            <td><a href="{% url 'student-detail' student.id %}">{{ student.name }}</a></td>
-            <td>{{ student.guardian_contact_info }}</td>
-        </tr>
+            <tr>
+                <td>{{ student.pk }}</td>
+                <td><a href="{% url 'student-detail' student.id %}">{{ student.name }}</a></td>
+                <td>{{ student.guardian_contact_info }}</td>
+            </tr>
         {% endfor %}
     </table>
 </div>

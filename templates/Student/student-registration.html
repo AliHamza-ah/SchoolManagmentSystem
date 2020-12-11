@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Student Registraion</title>
-</head>
-<body>
+{% extends 'base/base.html' %}
+{% block content %}
+
 {% load crispy_forms_tags %}
-    <form method="post">
+    <form method="post" id="StudentRegistrationForm">
         {% csrf_token %}
         {{ student_form | crispy }}
         <button type="submit">Create</button>
     </form >
-</body>
-</html>
+{% endblock %}
