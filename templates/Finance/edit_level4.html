@@ -22,7 +22,7 @@
                               data-level3-url="{% url 'ajax_load_level3' %}">
                             {% csrf_token %}
                             {{ form.as_p }}<br>
-                            <button type="submit" class="btn btn-primary">Create</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </form>
                     </div>
                 </div>
@@ -75,7 +75,6 @@
                     $("#id_parent_level2").html(data);  // replace the contents of the city input with the data that came from the server
                 }
             });
-
         });
         $("#id_parent_level2").change(function () { //django-model-form created this id
             var url = $("#Level4Form").attr("data-level3-url");  // get the url of the `load_cities` view
@@ -92,6 +91,7 @@
                     $("#id_parent_level").html(data);  // replace the contents of the city input with the data that came from the server
                 }
             });
+
         });
     </script>
 {% endblock %}

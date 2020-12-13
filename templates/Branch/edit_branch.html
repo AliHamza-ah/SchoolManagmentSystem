@@ -13,13 +13,13 @@
                     <div class="card border-primary mb-3">
                         <div class="class-body">
                             <div class="card-header">
-                                <strong>Add Level 1</strong>
+                                <strong>Create Branch</strong>
                             </div>
                             <div class="form-group">
                                 <form method="post" class="form-control">
                                     {% csrf_token %}
                                     {{ form.as_p }}
-                                    <button type="submit" class="btn btn-primary col-3">Create</button>
+                                    <button type="submit" class="btn btn-primary col-3">Update</button>
                                 </form>
                             </div>
                         </div>
@@ -29,25 +29,28 @@
                     <div class="card border-primary mb-3">
                         <div class="class-body">
                             <div class="card-header">
-                                <strong>Level 1 Details</strong>
+                                <strong>Branches Details</strong>
                             </div>
                             <div class="card-body">
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
                                         <td><strong>Name</strong></td>
-                                        <td><strong>Code</strong></td>
+                                        <td><strong>Branch Manager</strong></td>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for level in level1 %}
+                                    {% for branch in branches %}
                                         <tr>
-                                            <a href="{% url 'edit-level1' level.id %}"><td>{{ level.name }}</td></a>
-                                            <td>{{ level.code }}</td>
+                                            <td>
+                                                <a href="{% url 'edit_branch' branch.id %}">
+                                                    {{ branch.name }}
+                                                </a>
+                                            </td>
+                                            <td>{{ branch.branch_manager }}</td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>

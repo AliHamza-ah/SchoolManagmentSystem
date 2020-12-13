@@ -1,37 +1,64 @@
 {% extends 'base/base.html' %}
 {% block content %}
-{% load crispy_forms_tags %}
-{% if message %}
-<div class="alert  alert-danger alert-dismissible fade show" role="alert">
-                <span class="badge badge-pill badge-danger">Failure</span>{{ message }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-{% endif %}
-<div class="content mt-3">
-    <div class="animated fadeIn">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-2">
-                <div class="card mx-auto">
+    {% load crispy_forms_tags %}
+    {% if message %}
+        <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+            <span class="badge badge-pill badge-danger">Failure</span>{{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="card col-lg-6 text-center">
+            <div class="card border-primary mb-3">
+                <div class="class-body">
                     <div class="card-header">
                         <strong>Add Level 3</strong>
                     </div>
-                    <div class="mx-auto d-block">
-                        <div class="form-group">
+                    <div class="card-body form-group">
                             <form method="post" class="form-control" id="Level3Form"
                                   data-level2-url="{% url 'ajax_load_level2' %}">
                                 {% csrf_token %}
                                 {{ form.as_p }}<br>
-                                <button type="submit">Create</button>
-                            </form>
-                        </div>
+                                    <button type="submit" class="btn btn-primary col-3">Create</button>
+                                </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 text-center">
+            <div class="card border-primary mb-3">
+                <div class="class-body">
+                    <div class="card-header">
+                        <strong>Level 3 Details</strong>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <td><strong>Name</strong></td>
+                                <td><strong>Code</strong></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for level in level3 %}
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'edit_level3' level.id %}">
+                                            {{ level.name }}
+                                        </a>
+                                    </td>
+                                    <td>{{ level.code }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
     $("#id_parent_level1").change(function () {

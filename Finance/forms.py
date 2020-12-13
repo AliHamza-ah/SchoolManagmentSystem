@@ -1,7 +1,5 @@
 from django import forms
 from Finance.models import *
-from django_cascading_dropdown_widget.widgets import DjangoCascadingDropdownWidget
-from django_cascading_dropdown_widget.widgets import CascadingModelchoices
 
 
 class Level1Form(forms.ModelForm):
@@ -30,6 +28,13 @@ class Level3Form(forms.ModelForm):
     class Meta:
         model = Level3
         fields = ['parent_level1', 'parent_level', 'name']
+        widgets = {
+            'parent_level1': forms.Select(attrs={'class': 'form-control'}),
+            'parent_level': forms.Select(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Enter the name of Level 3'}),
+        }
+
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -44,13 +49,20 @@ class Level3Form(forms.ModelForm):
             except (ValueError, TypeError):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:
-            self.fields['parent_level'].queryset = self.instance.parent_level_set
-
+            self.fields['parent_level'].queryset = Level3.objects.filter(pk=self.instance.pk).order_by('name')
 
 class Level4Form(forms.ModelForm):
     class Meta:
         model = Level4
         fields = ['parent_level1', 'parent_level2', 'parent_level', 'name']
+
+        widgets = {
+            'parent_level1': forms.Select(attrs={'class': 'form-control'}),
+            'parent_level2': forms.Select(attrs={'class': 'form-control'}),
+            'parent_level': forms.Select(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Enter the name of Level 4'}),
+        }
+
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -65,17 +77,21 @@ class Level4Form(forms.ModelForm):
             except (ValueError, TypeError):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:
-            self.fields['parent_level'].queryset = self.instance.parent_level_set
+            # self.fields['parent_level'].queryset = self.instance.parent_level_set
+            self.fields['parent_level'].queryset = Level3.objects.filter(pk=self.instance.pk).order_by('name')
+
 
         self.fields['parent_level'].queryset = Level3.objects.none()
-        if 'parent_level' in self.data:
+        if 'parent_level1' in self.data:
             try:
                 city_id = int(self.data.get('parent_level1'))
                 self.fields['parent_level'].queryset = Level3.objects.filter(parent_level_id=city_id)
             except (ValueError, TypeError):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:
-            self.fields['parent_level'].queryset = self.instance.parent_level_set
+            # self.fields['parent_level'].queryset = self.instance.parent_level_set
+            self.fields['parent_level'].queryset = Level3.objects.filter(pk=self.instance.pk).order_by('name')
+
 
 
 class Level5Form(forms.ModelForm):

@@ -30,7 +30,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django_cascading_dropdown_widget',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -40,6 +39,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'Fee',
     'Finance',
+    'Branch',
     # 'accounts',
 ]
 

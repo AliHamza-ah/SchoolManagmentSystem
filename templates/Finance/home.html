@@ -1,12 +1,118 @@
 {% extends 'base/base.html' %}
 {% block content %}
-    <a href="{% url 'create_level1' %}">Create Level 1</a><br>
-
-    <a href="{% url 'create_level2' %}">Create Level 2</a><br>
-
-    <a href="{% url 'create_level3' %}">Create Level 3</a><br>
-
-    <a href="{% url 'create_level4' %}">Create Level 4</a><br>
-
-    <a href="{% url 'create_level5' %}">Create Level 5</a><br>
+    <div class="card-header col-7">
+        <strong>Create Levels</strong>
+    </div>
+    <div class="card-body">
+        <a href="{% url 'create_level2' %}">
+            <button type="button" class="btn btn-primary">
+                Create Level 2
+            </button>
+        </a>
+        <a href="{% url 'create_level3' %}">
+            <button type="button" class="btn btn-primary">
+                Create Level 3
+            </button>
+        </a>
+        <a href="{% url 'create_level4' %}">
+            <button type="button" class="btn btn-primary">
+                Create Level 4
+            </button>
+        </a>
+    </div>
+    <div class="row">
+        <div class="card col-3">
+            <div class="card-header">
+                <strong>Level 1 Details</strong>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td><strong>Code</strong></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for level in level1 %}
+                        <tr>
+                            <td>{{ level.name }}</td>
+                            <td>{{ level.id }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card col-3">
+            <div class="card-header">
+                <strong>Level 2 Details</strong>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td><strong>Code</strong></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for level in level2 %}
+                        <tr>
+                            <td>{{ level.name }}</td>
+                            <td>{{ level.code }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card col-3">
+            <div class="card-header">
+                <strong>Level 3 Details</strong>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td><strong>Code</strong></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for level in level3 %}
+                        <tr>
+                            <td>{{ level.name }}</td>
+                            <td>{{ level.code }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card col-3">
+            <div class="card-header">
+                <strong>Level 4 Details</strong>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <td><strong>Name</strong></td>
+                        <td><strong>Code</strong></td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for level in level4 %}
+                        <tr>
+                            <td>{{ level.name }}</td>
+                            <td>{{ level.code }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
 {% endblock %}

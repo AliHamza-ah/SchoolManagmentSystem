@@ -5,164 +5,176 @@
             <li class="nav-item">
                 <a class="nav-link" href="#"><i class="icon-speedometer"></i> Dashboard</a>
             </li>
+
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-puzzle"></i>Branch</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_branch' %}">
+                            <i class="fa fa-plus-circle"></i>Add Branch</a>
+                    </li>
+                </ul>
+            </li>
+
             <!-- Administration Section Start -->
             <li class="nav-item nav-dropdown">
-             <a class="nav-link nav-dropdown-toggle" href="#">
-                 <i class="nav-icon icon-puzzle"></i>Administration</a>
-             <ul class="nav-dropdown-items">
-                 <li class="nav-item">
-                     <a class="nav-link" href="#">
-                         <i class="fa fa-plus-circle"></i>Add Designation</a>
-                 </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="#">
-                         <i class="fa fa-plus-circle"></i>Add District</a>
-                 </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="#">
-                         <i class="fa fa-plus-circle"></i>Add Upazilla</a>
-                 </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="#">
-                         <i class="fa fa-plus-circle"></i>Add Union</a>
-                 </li>
-             </ul>
-           </li>
-           <!-- Administration Section END -->
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-puzzle"></i>Administration</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-plus-circle"></i>Add Designation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-plus-circle"></i>Add District</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-plus-circle"></i>Add Upazilla</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-plus-circle"></i>Add Union</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Administration Section END -->
 
-           <!-- Academic Section START -->
-           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#">
-                <i class="nav-icon icon-puzzle"></i>Academic</a>
-            <ul class="nav-dropdown-items">
-              <li class="nav-item">
-                  <a class="nav-link" href="#">
-                      <i class="fa fa-plus-circle"></i>Add Department</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">
-                      <i class="fa fa-plus-circle"></i>Create Class</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">
-                      <i class="fa fa-plus-circle"></i>Create Section</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">
-                      <i class="fa fa-plus-circle"></i>Create Session</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">
-                      <i class="fa fa-plus-circle"></i>Create Shift</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="#">
-                      <i class="fa fa-plus-circle"></i>Guide Teacher</a>
-              </li>
-            </ul>
-          </li>
-          <!-- Academic Section END -->
-
-           <!-- Teacher Section START -->
-           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#">
-                <i class="nav-icon icon-puzzle"></i>Teacher</a>
-            <ul class="nav-dropdown-items">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-plus-circle"></i>Teacher Registration</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-list"></i>Teacher List</a>
-                </li>
-            </ul>
-          </li>
-          <!-- Teacher Section END -->
-
-            <!-- Class Section START -->
+            <!-- Academic Section START -->
             <li class="nav-item nav-dropdown">
-             <a class="nav-link nav-dropdown-toggle" href="#">
-                 <i class="nav-icon icon-puzzle"></i>Class</a>
-             <ul class="nav-dropdown-items">
-               <li class="nav-item">
-                   <a class="nav-link" href="#">
-                       <i class="fa fa-plus-circle"></i>Class Registration</a>
-               </li>
-               <li class="nav-item">
-                   <a class="nav-link" href="#">
-                       <i class="fa fa-list"></i>Class List</a>
-               </li>
-             </ul>
-           </li>
-           <!-- Class Section END -->
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-puzzle"></i>Academic</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-plus-circle"></i>Add Department</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-plus-circle"></i>Create Class</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-plus-circle"></i>Create Section</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-plus-circle"></i>Create Session</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-plus-circle"></i>Create Shift</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-plus-circle"></i>Guide Teacher</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Academic Section END -->
+            {% if request.user.is_superuser %}
+                <!-- Teacher Section START -->
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link nav-dropdown-toggle" href="#">
+                        <i class="nav-icon icon-puzzle"></i>Teacher</a>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-plus-circle"></i>Teacher Registration</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-list"></i>Teacher List</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Teacher Section END -->
+            {% endif %}
+            <!-- Finance Section START -->
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-puzzle"></i>Accounts</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">
+                            <i class="fa fa-list"></i>Chart of Accounts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-list"></i>Level Details</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Class Section END -->
 
             <!-- Student Section START -->
             <li class="nav-item nav-dropdown">
-             <a class="nav-link nav-dropdown-toggle" href="#">
-                 <i class="nav-icon icon-puzzle"></i>Student</a>
-             <ul class="nav-dropdown-items">
-                 <li class="nav-item">
-                     <a class="nav-link" href="#">
-                         <i class="fa fa-plus-circle"></i>Student Registration</a>
-                 </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="#">
-                         <i class="fa fa-list"></i>Student List</a>
-                 </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="#">
-                         <i class="fa fa-search-plus"></i>Student Search</a>
-                 </li>
-             </ul>
-           </li>
-           <!-- Student Section END -->
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-puzzle"></i>Student</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-plus-circle"></i>Student Registration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-list"></i>Student List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-search-plus"></i>Student Search</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Student Section END -->
 
-           <!-- Enroll Student Section START -->
-        <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#">
-                <i class="nav-icon icon-puzzle"></i>Enroll Student</a>
-            <ul class="nav-dropdown-items">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-plus-circle"></i>Student Enrolled</a>
-                    <a class="nav-link" href="{% url 'student-list' %}">
-                        <i class="fa fa-list"></i>Enrolled Student List</a>
-                </li>
-            </ul>
-          </li>
-          <!-- Enroll Student Section END -->
+            <!-- Enroll Student Section START -->
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-puzzle"></i>Enroll Student</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-plus-circle"></i>Student Enrolled</a>
+                        <a class="nav-link" href="{% url 'student-list' %}">
+                            <i class="fa fa-list"></i>Enrolled Student List</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Enroll Student Section END -->
 
-           <!-- Employee Section START -->
-           <li class="nav-item nav-dropdown">
-            <a class="nav-link nav-dropdown-toggle" href="#">
-                <i class="nav-icon icon-puzzle"></i>Employee</a>
-            <ul class="nav-dropdown-items">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-plus-circle"></i>Add Employee</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">
-                        <i class="fa fa-list"></i>Employee List</a>
-                </li>
-            </ul>
-          </li>
-          <!-- Employee Section END -->
+            <!-- Employee Section START -->
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-puzzle"></i>Employee</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-plus-circle"></i>Add Employee</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-list"></i>Employee List</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Employee Section END -->
 
 
-         <!-- Attendence Report Section START -->
-         <li class="nav-item nav-dropdown">
-          <a class="nav-link nav-dropdown-toggle" href="#">
-              <i class="nav-icon icon-puzzle"></i>Attendence Report</a>
-          <ul class="nav-dropdown-items">
-              <li class="nav-item">
-                  <a class="nav-link" href="#">
-                      <i class="fa fa-plus-circle"></i>Student Attendence</a>
-              </li>
-          </ul>
-        </li>
-        <!-- Attendence Report Section END -->
+            <!-- Attendence Report Section START -->
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon icon-puzzle"></i>Attendence Report</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-plus-circle"></i>Student Attendence</a>
+                    </li>
+                </ul>
+            </li>
+            <!-- Attendence Report Section END -->
 
 
         </ul>
