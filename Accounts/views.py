@@ -74,22 +74,40 @@ def edit_perms(request, pk):
         manager = Employee.objects.filter(branch=request.user.employee.branch).get(user=request.user).user
     if user is None:
         return Http404
-    if request.method == 'POST':
-        perms = request.POST.getlist('user_permissions')
-        print(perms)
-        # for perm in perms:
-        #     user.user_permissions.add(int(perm))
-        # user.save()
     user_perms = user.user_permissions.all()
     if request.user.is_superuser:
         manager_perms = Permission.objects.all()
     else:
         manager_perms = manager.user_permissions.all()
+
+    # complementing Manger's QuerySet to Show only not assigned permissions
+    manager_perms = manager_perms.exclude(pk__in=user_perms.values_list('pk', flat=True))
+    manger_form = PermissionSelectForm(queryset=manager_perms, nm="manager_form")
+    user_form = PermissionSelectForm(queryset=user_perms, nm="user_form")
+    # print(manager_perms)
+    if request.method == 'POST':
+        use_perms = request.POST.getlist('user_form')
+        man_perms = request.POST.getlist('manager_form')
+        print(use_perms)
+        print(man_perms)
+        u_p = [user_perm.id for user_perm in user_perms]
+        for perm in man_perms:
+            user.user_permissions.add(int(perm))
+        for perm in use_perms:
+            user.user_permissions.remove(int(perm))
+        user.save()
     context = {
-        'manager_perms': manager_perms,
-        'user_perms': user_perms,
+        'manger_form': manger_form,
+        'user_form': user_form,
+        'pk': pk,
     }
     return render(request, 'Accounts/user_perms.html', context=context)
+
+
+def ajax_rm_perms(request):
+    print(request.POST['user_permissions'])
+    print(request.POST['pk'])
+    return HttpResponse()
 
 
 def edit_designation(request, pk):

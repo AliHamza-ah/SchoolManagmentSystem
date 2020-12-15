@@ -13,15 +13,15 @@ class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
 
-# class PermissionForm(forms.ModelForm):
-#     model = Permission
-#
-#     class Meta:
-#         widgets = {
-#             'name' : forms.ModelMultipleChoiceField(attrs={'class':'form-group'})
-#         }
+
+class PermissionSelectForm(forms.Form):
+
+    def __init__(self, queryset, nm, *args, **kwargs):
+        super(PermissionSelectForm, self).__init__(*args, **kwargs)
+        self.fields[f"{nm}"] = forms.ModelMultipleChoiceField(queryset=queryset, widget=forms.SelectMultiple(
+            {'class': 'form-control', 'style': "height: 267.594px; width:150;", 'id': f"id_{nm}"}))
+
 
 class CustomUserCreationForm(UserCreationForm):
-
     model = User
     fields = ['username', 'password1', 'password2', 'user_permissions', ]
