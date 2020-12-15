@@ -3,13 +3,6 @@ from datetime import timedelta, datetime, date
 
 
 # Create your models here.
-class Designation(models.Model):
-    name = models.CharField(max_length=20)
-
-    def __str__(self):
-        return self.name
-
-
 class Religion(models.Model):
     name = models.CharField(max_length=10)
 

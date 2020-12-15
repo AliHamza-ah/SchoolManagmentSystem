@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    <div class="container m-3">
+        <div class="col-md-12 text-center">
+            <div class="card border-primary mb-3">
+                <div class="class-body">
+                    <div class="card-header">
+                        <strong>Employee List</strong>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <td><strong>Name</strong></td>
+                                <td><strong>Designation</strong></td>
+                                <td><strong>Edit</strong></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for employee in employees %}
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'employee_detail'  employee.pk %}">
+                                            {{ employee.user.username.capitalize }}
+                                        </a>
+                                    </td>
+                                    <td>{{ employee.designation }}</td>
+                                    <td>
+                                        <a href="{% url 'edit_designation' employee.id %}">
+                                            <button type="button" class="btn btn-small btn-outline-success rounded">
+                                                Designation
+                                            </button>
+                                        </a>
+                                        <a href="{% url 'edit_perms' employee.id %}">
+                                            <button type="button" class="btn btn-outline-warning rounded">
+                                                Permissions
+                                            </button>
+                                        </a>
+                                        <a href="#">
+                                            <button type="button" class="fa fa-key btn-outline-warning rounded">
+                                            </button>
+                                        </a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </ul>
+    </div>
+{% endblock %}

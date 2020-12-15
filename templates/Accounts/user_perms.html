@@ -1,0 +1,72 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    {% load crispy_forms_tags %}
+    {% if message %}
+        <h1 class="alert alert-danger">
+            {{ message }}
+        </h1>
+    {% endif %}
+    <div class="content">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class=" card col-4 selector-available mx-auto">
+                    <div class="card-header">
+                        <strong>
+                            All Permissions
+                        </strong>
+                    </div>
+                    <div class="cardbody mt-2">
+                        <form method="post" action="">
+                            <select name="user_permissions_old" multiple
+                                    class="select2-selection--multiple  col-12"
+                                    style="height: 267.594px" ;>
+                                <option value="" title="Select Permissions to Add" selected="selected">
+                                    Select Permissions to Add
+                                </option>
+                                {% for perm in manager_perms %}
+                                    {% if perm in user_perms %}
+                                    {% else %}
+                                        <option value="{{ perm.id }}" title="{{ perm.name }}">
+                                            {{ perm.name }}
+                                        </option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                            <div class="card-footer text-right">
+                                <a title="Choose" href="#" id="add_perms" class="selector-add mx-auto">
+                                    <input type="button" action="submit" value="Add"
+                                           class="btn btn-outline-success fa fa-arrow-circle-right"/>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class=" card col-4 selector-available mx-auto">
+                    <div class="card-header"><strong>Assigned User Permissions<span
+                            class="help help-tooltip help-icon"
+                            title="This is the list of available user permissions. You may choose some by selecting them in the box below and then clicking the &quot;Choose&quot; arrow between the two boxes."></span>
+                    </strong></div>
+                    <div class="cardbody mt-2">
+                        <select name="user_permissions" id="id_user_permissions_from" multiple
+                                class="filtered  col-12" data-field-name="user permissions" data-is-stacked="0"
+                                style="height: 267.594px" ;>
+                            {% for perm in user_perms %}
+                                <option value="{{ perm.id }}" title="{{ perm.name }}">
+                                    {{ perm.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <div class="card-footer text-left">
+                            <a title="Choose" href="#" id="add_perms" class="selector-add mt-3 mx-auto">
+                                <button class="btn btn-outline-danger fa fa-arrow-circle-left">
+                                    Remove
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

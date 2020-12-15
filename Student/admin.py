@@ -10,7 +10,6 @@ admin.site.register(Academic_Session)
 admin.site.register(Religion)
 admin.site.register(City)
 admin.site.register(Country)
-admin.site.register(Designation)
 admin.site.register(Attendance)
 admin.site.register(AttendanceReport)
 

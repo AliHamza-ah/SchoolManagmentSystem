@@ -11,13 +11,15 @@ class Branch(models.Model):
     landline = models.BigIntegerField()
     address = models.TextField()
     ntn = models.CharField(max_length=15)
-    branch_manager = models.ForeignKey(User, on_delete=models.PROTECT)
     logo = models.ImageField(upload_to='media/Branch_logo/', blank=True, null=True)
     bank_name = models.CharField(max_length=30)
     account_no = models.BigIntegerField()
     account_no1 = models.BigIntegerField(blank=True, null=True)
     account_no2 = models.BigIntegerField(blank=True, null=True)
 
-
     def __str__(self):
         return f"{self.name}".capitalize()
+
+    class Meta:
+        verbose_name = 'Branch'
+        verbose_name_plural = 'Branches'

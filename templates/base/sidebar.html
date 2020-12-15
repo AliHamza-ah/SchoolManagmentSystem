@@ -3,19 +3,20 @@
     <nav class="sidebar-nav">
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="icon-speedometer"></i> Dashboard</a>
+                <a class="nav-link" href="{% url 'dashboard' %}"><i class="icon-speedometer"></i> Dashboard</a>
             </li>
-
-            <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#">
-                    <i class="nav-icon icon-puzzle"></i>Branch</a>
-                <ul class="nav-dropdown-items">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'create_branch' %}">
-                            <i class="fa fa-plus-circle"></i>Add Branch</a>
-                    </li>
-                </ul>
-            </li>
+            {% if request.user.is_superuser %}
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link nav-dropdown-toggle" href="#">
+                        <i class="nav-icon icon-puzzle"></i>Branch</a>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'create_branch' %}">
+                                <i class="fa fa-plus-circle"></i>Add Branch</a>
+                        </li>
+                    </ul>
+                </li>
+            {% endif %}
 
             <!-- Administration Section Start -->
             <li class="nav-item nav-dropdown">

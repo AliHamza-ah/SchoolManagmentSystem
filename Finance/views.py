@@ -6,7 +6,7 @@ from .models import *
 
 # Create your views here.
 @login_required
-@permission_required('add.Finance', raise_exception=True)
+@permission_required('Finance.view_level1')
 def home(request):
     level1 = Level1.objects.all().order_by('id')
     level2 = Level2.objects.all().order_by('code')
@@ -24,7 +24,7 @@ def home(request):
 
 
 @login_required
-@permission_required('add.Finance', raise_exception=True)
+@permission_required('Finance.add_level1')
 def create_level1(request):
     form = Level1Form()
     level1 = Level1.objects.all()
@@ -39,7 +39,7 @@ def create_level1(request):
 
 
 @login_required
-@permission_required('add.Finance', raise_exception=True)
+@permission_required('Finance.add_level2')
 def create_level2(request):
     form = Level2Form()
     level2 = Level2.objects.all().order_by('code')
@@ -59,7 +59,7 @@ def create_level2(request):
                       {'form': form, 'message': "The level two object of this name already exists.", 'level2': level2})
     return render(request, 'Finance/level2.html', {'form': form, 'level2': level2})
 
-
+@permission_required('Finance.edit_level2')
 def edit_level2(request, pk):
     level = get_object_or_404(Level2, pk=pk)
     level2 = Level2.objects.all().order_by('code')
@@ -76,7 +76,7 @@ def edit_level2(request, pk):
 
 
 @login_required
-@permission_required('add.Finance', raise_exception=True)
+@permission_required('Finance.add_level3')
 def create_level3(request):
     form = Level3Form()
     level3 = Level3.objects.all().order_by('code')
@@ -117,7 +117,6 @@ def edit_level3(request, pk):
 
 
 @login_required
-@permission_required('add.Finance', raise_exception=True)
 def create_level4(request):
     form = Level4Form()
     level4 = Level4.objects.all().order_by('code')
@@ -176,7 +175,6 @@ def load_level3(request):
 
 
 @login_required
-@permission_required('add.Finance', raise_exception=True)
 def create_level5(request):
     form = Level5Form()
     if request.method == 'POST':

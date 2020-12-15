@@ -14,7 +14,6 @@ class BranchForm(forms.ModelForm):
             'landline': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter the Contact No.'}),
             'address': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter the Address'}),
             'ntn': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Enter NTN Number'}),
-            'branch_manager': forms.Select(attrs={'class': 'form-control'}),
             'bank_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter the Bank Name'}),
             'account_no': forms.NumberInput(
                 attrs={'class': 'form-control', 'placeholder': 'Enter the Bank Account No.'}),
