@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from Accounts.models import Employee
 from .models import Branch
 from .forms import BranchForm
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.models import User
 
 
 # Create your views here.
@@ -34,3 +36,33 @@ def edit_branch(request, pk):
         'branches': branches,
     }
     return render(request, 'Branch/edit_branch.html', context)
+
+@user_passes_test(lambda u: u.is_superuser)
+def branches(request):
+    branches = Branch.objects.all().order_by("name")
+    return render(request, 'Branch/branches.html', {'branches': branches})
+
+@user_passes_test(lambda u: u.is_superuser)
+def deactivate_branch(request, pk):
+    branch = Branch.objects.get(pk=pk)
+    branch.is_active = False
+    branch.save()
+
+    employees = Employee.objects.filter(branch=branch)
+
+    for employee in employees:
+        employee.user.is_active = False
+        employee.user.save()
+    return redirect('branches')
+
+@user_passes_test(lambda u: u.is_superuser)
+def activate_branch(request, pk):
+    branch = Branch.objects.get(pk=pk)
+    branch.is_active = True
+    branch.save()
+    employees = Employee.objects.filter(branch=branch)
+
+    for employee in employees:
+        employee.user.is_active = True
+        employee.user.save()
+    return redirect('branches')

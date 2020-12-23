@@ -42,7 +42,7 @@
                                     <tbody>
                                     {% for level in level1 %}
                                         <tr>
-                                            <a href="{% url 'edit-level1' level.id %}"><td>{{ level.name }}</td></a>
+                                            <a href="{% url 'edit_level1' level.id %}"><td>{{ level.name }}</td></a>
                                             <td>{{ level.code }}</td>
                                         </tr>
                                     {% endfor %}

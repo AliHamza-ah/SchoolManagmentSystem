@@ -15,9 +15,9 @@ class Designation(models.Model):
 
 
 class Employee(models.Model):
-    user = models.OneToOneField(User, related_name='employee', null=True ,  on_delete=models.PROTECT)
-    branch = models.ForeignKey(Branch, on_delete=models.PROTECT)
-    designation = models.ForeignKey(Designation, null=True , on_delete=models.PROTECT)
+    user = models.OneToOneField(User, related_name='employee', null=True ,  on_delete=models.CASCADE)
+    branch = models.ForeignKey(Branch, on_delete=models.CASCADE, null=True)
+    designation = models.ForeignKey(Designation, null=True , on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.user.username}"

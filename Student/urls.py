@@ -10,6 +10,4 @@ urlpatterns = [
     path('student-contact-list', student_contact_list, name='student-contact-list'),
     path('<int:pk>', student_detail, name='student-detail'),
     path('edit/<int:pk>', student_edit, name='student-edit'),
-
-
 ]

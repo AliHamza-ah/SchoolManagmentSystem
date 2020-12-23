@@ -29,35 +29,35 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 text-center">
-            <div class="card border-primary mb-3">
-                <div class="class-body">
-                    <div class="card-header">
-                        <strong>Level 2 Details</strong>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <td><strong>Name</strong></td>
-                                <td><strong>Code</strong></td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for level in level2 %}
-                                <tr>
-                                    <a href="#">
-                                        <td>{{ level.name }}</td>
-                                    </a>
-                                    <td>{{ level.code }}</td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+{#        <div class="col-md-6 text-center">#}
+{#            <div class="card border-primary mb-3">#}
+{#                <div class="class-body">#}
+{#                    <div class="card-header">#}
+{#                        <strong>Level 2 Details</strong>#}
+{#                    </div>#}
+{#                    <div class="card-body">#}
+{#                        <table class="table table-striped">#}
+{#                            <thead>#}
+{#                            <tr>#}
+{#                                <td><strong>Name</strong></td>#}
+{#                                <td><strong>Code</strong></td>#}
+{#                            </tr>#}
+{#                            </thead>#}
+{#                            <tbody>#}
+{#                            {% for level in level2 %}#}
+{#                                <tr>#}
+{#                                    <a href="#">#}
+{#                                        <td>{{ level.name }}</td>#}
+{#                                    </a>#}
+{#                                    <td>{{ level.code }}</td>#}
+{#                                </tr>#}
+{#                            {% endfor %}#}
+{#                            </tbody>#}
+{##}
+{#                        </table>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
     </div>
 {% endblock %}

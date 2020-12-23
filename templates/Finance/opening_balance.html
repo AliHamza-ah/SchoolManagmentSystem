@@ -1,0 +1,63 @@
+{% extends 'base/base.html' %}
+{% block content %}
+    {% load crispy_forms_tags %}
+
+    {% if message %}
+        <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+            <span class="badge badge-pill badge-danger">Alert </span>{{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+    {% endif %}
+    <div class="content">
+        <div class="animated fadeIn">
+            <div class="container row">
+                <div class="col-12 text-center">
+                    <div class="form-group text-center">
+                        <form method="post" action="">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" name="submit">Update</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="container mt-3">
+                <div class="col-12 text-center">
+                    <div class="card border-primary mb-3">
+                        <div class="class-body">
+                            <div class="card-header">
+                                <strong>Opening Balance</strong>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <td><strong>Code</strong></td>
+                                        <td><strong>Account Name</strong></td>
+                                        <td><strong>Debit</strong></td>
+                                        <td><strong>Credit</strong></td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for level in balance %}
+                                        <tr>
+                                            <td>{{ level.account_name.code }}</td>
+                                            <td>{{ level.account_name.name }}</td>
+                                            <td>{{ level.debit }}</td>
+                                            <td>{{ level.credit }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

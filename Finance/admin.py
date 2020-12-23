@@ -36,10 +36,7 @@ class Level4Admin(admin.ModelAdmin):
 
 
 admin.site.register(Level4, Level4Admin)
+admin.site.register(FinancialYear)
+admin.site.register(OpeningBalance)
 
-class Level5Admin(admin.ModelAdmin):
-    list_display = ['parent','created_at','debit']
-    list_filter = ['parent','created_at', 'debit']
-    search_fields = ['created_at']
 
-admin.site.register(Level5, Level5Admin)

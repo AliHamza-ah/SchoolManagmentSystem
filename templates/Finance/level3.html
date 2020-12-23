@@ -17,12 +17,11 @@
                         <strong>Add Level 3</strong>
                     </div>
                     <div class="card-body form-group">
-                            <form method="post" class="form-control" id="Level3Form"
-                                  data-level2-url="{% url 'ajax_load_level2' %}">
-                                {% csrf_token %}
-                                {{ form.as_p }}<br>
-                                    <button type="submit" class="btn btn-primary col-3">Create</button>
-                                </form>
+                        <form method="post" class="form-control" id="Level3Form">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary col-3" id="create_button">Create</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -59,23 +58,19 @@
             </div>
         </div>
     </div>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
-    $("#id_parent_level1").change(function () {
-        var url = $("#Level3Form").attr("data-level2-url");  // get the url of the `load_cities` view
-        var parent_level = $(this).val();  // get the selected country ID from the HTML input
-
-        $.ajax({                       // initialize an AJAX request
-            url: '{% url 'ajax_load_level2' %}',                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
-            data: {
-                'parent_level': parent_level       // add the country id to the GET parameters
-            },
-            success: function (data) {   // `data` is the return of the `load_cities` view function
-                $("#id_parent_level").html(data);  // replace the contents of the city input with the data that came from the server
-            }
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $("#id_parent_level1").change(function () {
+            var parent_level = $(this).val();  // get the selected country ID from the HTML input
+            $.ajax({                       // initialize an AJAX request
+                url: '{% url 'ajax_load_level2' %}',                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+                data: {
+                    'parent_level': parent_level       // add the country id to the GET parameters
+                },
+                success: function (data) {   // `data` is the return of the `load_cities` view function
+                    $("#id_parent_level").html(data);  // replace the contents of the city input with the data that came from the server
+                }
+            });
         });
-
-    });
-
-</script>
+    </script>
 {% endblock %}

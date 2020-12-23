@@ -15,16 +15,16 @@
             {#                <div class="row">#}
             {#                    <div class="text-center">#}
             <div class="card border-primary mb-3">
-                <div class="class-body">
-                    <div class="card-header">
-                        <strong>Add Level 3</strong>
+                <div class="class-body text-center">
+                    <div class="card-header ">
+                        <strong>Update Level 3</strong>
                     </div>
                     <div class="form-group">
                             <form method="post" class="form-control" id="Level3Form"
                                   data-level2-url="{% url 'ajax_load_level2' %}">
                                 {% csrf_token %}
                                 {{ form.as_p }}<br>
-                                    <button type="submit" class="btn btn-primary col-3">Create</button>
+                                    <button type="submit" class="btn btn-primary col-3">Update</button>
                                 </form>
                     </div>
                 </div>

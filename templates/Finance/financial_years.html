@@ -1,59 +1,37 @@
 {% extends 'base/base.html' %}
 {% block content %}
     <div class="card-header col-7">
-        <strong>Create Levels</strong>
+        <strong>Create Financial Year</strong>
     </div>
     <div class="card-body">
-        <a href="{% url 'create_level1' %}">
+        <a href="{% url 'add_financial_year' %}">
             <button type="button" class="btn btn-primary">
-                Create Level 1
-            </button>
-        </a>        <a href="{% url 'create_level2' %}">
-            <button type="button" class="btn btn-primary">
-                Create Level 2
-            </button>
-        </a>
-        <a href="{% url 'create_level3' %}">
-            <button type="button" class="btn btn-primary">
-                Create Level 3
-            </button>
-        </a>
-        <a href="{% url 'create_level4' %}">
-            <button type="button" class="btn btn-primary">
-                Create Level 4
+                Create
             </button>
         </a>
     </div>
     <div class="row">
         <div class="card col-6">
             <div class="card-header">
-                <strong>Level Details</strong>
+                <strong>Year Details</strong>
             </div>
             <div class="card-body">
                 <table class="table table-striped table-sm">
                     <thead>
                     <tr>
-                        <td><strong>Code</strong></td>
-                        <td><strong>Name</strong></td>
-                        <td><strong>Status</strong></td>
+                        <td><strong>Start Date</strong></td>
+                        <td><strong>End Date</strong></td>
+                        <td><strong>Financial Year</strong></td>
+                        <td><strong>Status(Active/Inactive)</strong></td>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for level in level %}
+                    {% for year in years %}
                         <tr>
-                            <td>{{ level.code }}</td>
-                            <td>
-                                {% if   level.code > 9 and level.code < 999 %}
-                                    <a href="{% url 'edit_level2' level.id %}">
-                                {% elif level.code < 9 %}
-                                    <a href="{% url 'edit_level1' level.id %}">
-                                {% elif level.code > 999 and level.code < 999999 %}
-                                    <a href="{% url 'edit_level3' level.id %}">
-                                {% elif level.code > 999999 %}
-                                    <a href="{% url 'edit_level4' level.id %}">
-                                {% endif %}
-                                {{ level.name }}</a></td>
-                            {% if level.is_active %}
+                            <td>{{ year.start_date }}</td>
+                            <td>{{ year.end_date }}</td>
+                            <td><a href="{% url 'edit_financial_year' year.id %}">{{ year.end_date.year }}</a></td>
+                            {% if year.is_active %}
                                 <td>Active</td>
                                 {% else %}
                                 <td>Inactive</td>

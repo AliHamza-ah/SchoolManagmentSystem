@@ -17,7 +17,7 @@
             <div class="card border-primary mb-3">
                 <div class="class-body">
                     <div class="card-header text-center">
-                        <strong>Update Level 2</strong>
+                        <strong>Update Level 1</strong>
                     </div>
                     <div class="form-group">
                         <form method="post" class="form-control">
@@ -33,7 +33,7 @@
             <div class="card border-primary mb-3">
                 <div class="class-body">
                     <div class="card-header">
-                        <strong>Level 2 Details</strong>
+                        <strong>Level 1 Details</strong>
                     </div>
                     <div class="card-body">
                         <table class="table table-striped">
@@ -44,12 +44,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for level in level2 %}
+                            {% for level in level1 %}
                                 <tr>
                                     <a href="#">
                                         <td>{{ level.name }}</td>
                                     </a>
-                                    <td>{{ level.code }}</td>
+                                    <td>{{ level.id }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>

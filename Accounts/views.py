@@ -44,12 +44,53 @@ def make_user(request):
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            employee = Employee.objects.create(user=user, branch=request.user.employee.branch)
-            user.save()
-            employee.save()
-            return redirect('employee_list')
+            if request.user.is_superuser:
+                employee = Employee.objects.create(user=user, branch=None)
+                user.save()
+                employee.save()
+                return redirect('make_employee')
+            else:
+                employee = Employee.objects.create(user=user, branch=request.user.employee.branch)
+                user.save()
+                employee.save()
+                return redirect('employee_list')
         return render(request, 'accounts/make_user.html', {'form': form, 'message': 'Invalid Data'})
     return render(request, 'accounts/make_user.html', {'form': form})
+
+
+def users(request):
+    if request.user.is_superuser:
+        users = User.objects.all()
+    else:
+        employees = Employee.objects.filter(branch=request.user.employee.branch).values('user__pk')
+        users = User.objects.filter(pk__in=employees).exclude(pk=request.user.pk)
+    return render(request, 'Accounts/users.html', {'users': users})
+
+
+def deactivate_user(request, pk):
+    user = User.objects.get(pk=pk)
+    user.is_active = False
+    user.save()
+    return redirect('users')
+
+
+def activate_user(request, pk):
+    user = User.objects.get(pk=pk)
+    user.is_active = True
+    user.save()
+    return redirect('users')
+
+
+def make_employee(request):
+    form = EmployeeForm()
+    if request.user.is_superuser:
+        if request.method == "POST":
+            form = EmployeeForm(request.POST)
+            if form.is_valid():
+                form.save()
+            return redirect('employee_list')
+        return render(request, 'Finance/make_employee.html', {'form': form})
+    return render(request, 'Finance/make_employee.html', {'form': form})
 
 
 def employee_list(request):

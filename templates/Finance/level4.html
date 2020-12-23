@@ -9,16 +9,16 @@
             </button>
         </div>
     {% endif %}
-    <div class="row">
-        <div class="card col-lg-6 text-center">
-            <div class="card border-primary mb-3">
-                <div class="class-body">
+    <div class="container">
+        <div class="row">
+            {#            <div class="card col-lg-6 text-center">#}
+            <div class="card col-lg-6 border-primary mb-3">
+                <div class="class-body text-center">
                     <div class="card-header">
                         <strong>Add Level 4</strong>
                     </div>
                     <div class="card-body form-group">
-
-                        <form method="post" id="Level4Form" data-level2-url="{% url 'ajax_load_level2' %}"
+                        <form class = "form-control" method="post" id="Level4Form" data-level2-url="{% url 'ajax_load_level2' %}"
                               data-level3-url="{% url 'ajax_load_level3' %}">
                             {% csrf_token %}
                             {{ form.as_p }}<br>
@@ -27,34 +27,34 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6 text-center">
-            <div class="card border-primary mb-3">
-                <div class="class-body">
-                    <div class="card-header">
-                        <strong>Level 4 Details</strong>
-                    </div>
-                    <div class="card-body">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <td><strong>Name</strong></td>
-                                <td><strong>Code</strong></td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {% for level in level4 %}
+            <div class="col-md-6 text-center">
+                <div class="card border-primary mb-3">
+                    <div class="class-body">
+                        <div class="card-header">
+                            <strong>Level 4 Details</strong>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
                                 <tr>
-                                    <td>
-                                        <a href="{% url 'edit_level4' level.id %}">
-                                            {{ level.name }}
-                                        </a>
-                                    </td>
-                                    <td>{{ level.code }}</td>
+                                    <td><strong>Name</strong></td>
+                                    <td><strong>Code</strong></td>
                                 </tr>
-                            {% endfor %}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                {% for level in level4 %}
+                                    <tr>
+                                        <td>
+                                            <a href="{% url 'edit_level4' level.id %}">
+                                                {{ level.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ level.code }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
